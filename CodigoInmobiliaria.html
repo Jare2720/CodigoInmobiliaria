@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendar Cita - Inmobiliaria</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        label {
+            margin-top: 10px;
+            display: block;
+        }
+        select, input[type="date"], input[type="time"], input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+        }
+        .confirmation {
+            display: none;
+            margin-top: 20px;
+            padding: 10px;
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Agendar Cita</h1>
+    <form id="appointmentForm">
+        <label for="date">Fecha:</label>
+        <input type="date" id="date" required>
+
+        <label for="time">Hora:</label>
+        <input type="time" id="time" required>
+
+        <label for="type">Tipo de Cita:</label>
+        <select id="type" required>
+            <option value="">Seleccione...</option>
+            <option value="visita">Visita a Propiedad</option>
+            <option value="asesoria">Asesoría</option>
+        </select>
+
+        <input type="submit" value="Confirmar Cita">
+    </form>
+
+    <div id="confirmation" class="confirmation">
+        <h2>Cita Confirmada</h2>
+        <p id="confirmationDetails"></p>
+    </div>
+</div>
+
+<script>
+    document.getElementById('appointmentForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const date = document.getElementById('date').value;
+        const time = document.getElementById('time').value;
+        const type = document.getElementById('type').value;
+
+        const confirmationDetails = `Fecha: ${date}<br>Hora: ${time}<br>Tipo de Cita: ${type}`;
+        document.getElementById('confirmationDetails').innerHTML = confirmationDetails;
+        document.getElementById('confirmation').style.display = 'block';
+
+        // Reset form fields
+        this.reset();
+    });
+</script>
+
+</body>
+</html>
